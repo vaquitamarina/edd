@@ -14,7 +14,7 @@ void inOrder(nodo *);
 void postOrder(nodo *);
 void view(nodo *, int);
 
-int main (int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   nodo *raiz = NULL;
   insert(raiz, 10);
   insert(raiz, 5);
@@ -39,7 +39,7 @@ void insert(nodo *&raiz, int x) {
   }
 }
 
-void remove(nodo *&raiz, int x){
+void remove(nodo *&raiz, int x) {
   if (raiz != NULL) {
     if (x < raiz->inf) {
       remove(raiz->izq, x);
@@ -63,11 +63,11 @@ void remove(nodo *&raiz, int x){
       delete p;
     }
   }
-  }
+}
 
-void preOrder(nodo *raiz){
+void preOrder(nodo *raiz) {
   if (raiz != NULL) {
-    cout<<raiz->inf<<" ";
+    cout << raiz->inf << " ";
     preOrder(raiz->izq);
     preOrder(raiz->der);
   }
@@ -76,7 +76,7 @@ void preOrder(nodo *raiz){
 void inOrder(nodo *raiz) {
   if (raiz != NULL) {
     inOrder(raiz->izq);
-    cout<<raiz->inf<<" ";
+    cout << raiz->inf << " ";
     inOrder(raiz->der);
   }
 }
@@ -85,17 +85,17 @@ void postOrder(nodo *raiz) {
   if (raiz != NULL) {
     postOrder(raiz->izq);
     postOrder(raiz->der);
-    cout<<raiz->inf<<" ";
+    cout << raiz->inf << " ";
   }
 }
 
 void view(nodo *raiz, int n) {
   if (raiz != NULL) {
-    view(raiz->der, n+1);
+    view(raiz->der, n + 1);
     for (int i = 0; i < n; i++) {
-      cout<<"   ";
+      cout << "   ";
     }
-    cout<<raiz->inf<<endl;
-    view(raiz->izq, n+1);
+    cout << raiz->inf << endl;
+    view(raiz->izq, n + 1);
   }
 }
