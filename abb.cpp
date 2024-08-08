@@ -103,6 +103,19 @@ int contar(nodo *raiz){
   }
 }
 
+
+int nHojas(nodo *raiz){
+  if(raiz != NULL){
+    if(raiz->izq == NULL && raiz->der == NULL){
+     return 1;
+    } else{
+      return nHojas(raiz->izq) + nHojas(raiz->der);
+    }
+  } else{
+    return 0;
+  } 
+}
+
 void preOrder(nodo *raiz) {
   if (raiz != NULL) {
     cout << raiz->inf << " ";

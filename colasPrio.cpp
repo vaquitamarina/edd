@@ -1,17 +1,22 @@
 #include <bits/stdc++.h>
-using namespace std;
-
 #define MAX 10
 #define LVL 5
+
+using namespace std;
 
 class ColaPrioritaria{
   private:
     string matriz[LVL][MAX];
     int frente[LVL];
     int final[LVL];
-  public:
-    ColaPrioritaria();
-    void insertar(string dato, int prio){
+  public:    
+    ColaPrioritaria(){
+      for(int i = 0; i < LVL; i++){
+        frente[i] = -1;
+        final[i] = -1;
+      }
+    }
+    void push(string dato, int prio){
       if(frente[prio] == (final[prio] + 1) % MAX){
         cout<<"Cola llena"<<endl;
       } else{
@@ -40,11 +45,15 @@ class ColaPrioritaria{
       cout<<"Cola vacia"<<endl;
       return "";
     }
-}
+};
 
 int main (int argc, char *argv[]) {
-  Colaprioritaria cola;
-  cola.insertar("A", 0);
-  cola.insertar("B", 1);
+  ColaPrioritaria cola;
+  cola.push("A", 3);
+  cola.push("b", 0);
+  cout<<cola.pop()<<endl;
+  cout<<cola.pop()<<endl;
   return 0;
 }
+
+
