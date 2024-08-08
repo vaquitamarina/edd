@@ -310,7 +310,7 @@ void remove(nodo *&raiz, int dato, int &cent) {
     } else {
       if (dato > raiz->inf) {
         remove(raiz->der, dato, cent);
-        rstruct1(raiz, cent);
+        rstruct2(raiz, cent);
       } else {
         nodo *q = raiz;
         if (q->der == NULL) {
