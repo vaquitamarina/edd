@@ -22,21 +22,13 @@ int main(int argc, char *argv[]) {
   // test
   nodo *raiz = NULL;
   int cen = 1;
-  insert(raiz, 65, cen);
-  insert(raiz, 39, cen);
-  insert(raiz, 70, cen);
-  insert(raiz, 23, cen);
-  insert(raiz, 50, cen);
-  insert(raiz, 82, cen);
-  insert(raiz, 68, cen);
+  insert(raiz, 4, cen);
+  insert(raiz, 2, cen);
   insert(raiz, 10, cen);
-  insert(raiz, 66, cen);
-  insert(raiz, 43, cen);
-  insert(raiz, 59, cen);
-  // insert(raiz, 4, cen);
-  // insert(raiz, 2, cen);
-  // insert(raiz, 10, cen);
-  remove(raiz, 23, cen);
+  insert(raiz, 5,cen);
+  insert(raiz, 20,cen);
+  insert(raiz, 30, cen);
+  remove(raiz, 10, cen);
   view(raiz, 0);
   return 0;
 }
@@ -194,7 +186,7 @@ void rstruct1(nodo *&raiz, int &cent) {
       raiz->fe = 0;
       break;
     case 0:
-      raiz->fe = -1;
+      raiz->fe = 1;
       cent = 0;
       break;
     case 1: {
@@ -246,7 +238,7 @@ void rstruct2(nodo *&raiz, int &cent) {
       raiz->fe = 0;
       break;
     case 0:
-      raiz->fe = 1;
+      raiz->fe = -1;
       cent = 0;
       break;
     case -1: {
@@ -310,7 +302,7 @@ void remove(nodo *&raiz, int dato, int &cent) {
     } else {
       if (dato > raiz->inf) {
         remove(raiz->der, dato, cent);
-        rstruct1(raiz, cent);
+        rstruct2(raiz, cent);
       } else {
         nodo *q = raiz;
         if (q->der == NULL) {

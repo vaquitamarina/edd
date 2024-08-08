@@ -13,14 +13,18 @@ void preOrder(nodo *);
 void inOrder(nodo *);
 void postOrder(nodo *);
 void view(nodo *, int);
+int altura(nodo *, int);
+int contar(nodo *);
 
 int main(int argc, char *argv[]) {
   nodo *raiz = NULL;
   insert(raiz, 10);
   insert(raiz, 5);
   insert(raiz, 20);
-  remove(raiz, 10);
+  insert(raiz, 10);
   view(raiz, 0);
+  cout << altura(raiz, 0) << endl;
+  cout << contar(raiz) << endl;
   return 0;
 }
 
@@ -34,7 +38,11 @@ void insert(nodo *&raiz, int x) {
     if (x < raiz->inf) {
       insert(raiz->izq, x);
     } else {
-      insert(raiz->der, x);
+      if(x > raiz->inf) {
+        insert(raiz->der, x);
+      } else {
+        cout << "El dato ya existe" << endl;
+      }
     }
   }
 }
@@ -52,16 +60,46 @@ void remove(nodo *&raiz, int x) {
       } else if (p->izq == NULL) {
         raiz = p->der;
       } else {
-        p = p->izq;
-        while (p->der != NULL) {
-          p = p->der;
+        nodo *aux = p->izq;
+        nodo *aux1;
+        int cen = 0;
+        while(aux->der != NULL){
+          aux1 = aux;
+          aux = aux->der;
+          cen = 1;
         }
-        p->der = raiz->der;
-        p = raiz;
-        raiz = raiz->izq;
+        raiz->inf = aux->inf;
+        p = aux;
+        if (cen == 0) {
+          raiz->izq = aux->izq;
+        } else {
+          aux1->der = aux->izq;
+        }
       }
       delete p;
     }
+  }
+}
+
+int altura(nodo *raiz, int cont){
+  if(raiz != NULL){
+    int a = altura(raiz->izq, cont + 1);
+    int b = altura(raiz->der, cont + 1);
+    if(a > b){
+      return a;
+    } else{
+      return b;
+    }
+  }
+  return cont;
+}
+
+
+int contar(nodo *raiz){
+  if(raiz != NULL){
+    return 1 + contar(raiz->izq) + contar(raiz->der);
+  } else{
+    return 0;
   }
 }
 
